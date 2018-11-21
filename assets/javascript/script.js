@@ -1,7 +1,25 @@
+"Let's all go to the movies!";
 
+$(document).ready(function(){
 // I hope to create arrays and variable
 
-// create function that creates buttons using elements with the array
+    var i, l, button = "", toDoCount=0;
+    var pics=["Die Hard", "Star Wars", "Casablanca", "The Third Man", "Moonlight", "Unforgiven", "Mad Max Fury Road", "The Revenant", "Goodfellas", "IT"];
+    var loopCounter = sessionStorage.getItem("count");
+    console.log(loopCounter)
+// created get session storage in order to loop through movies
+    for(l=0; l <= loopCounter; l++) {
+
+        if(loopCounter!=null){
+            pics.push(sessionStorage.getItem("Movie-" +1));
+            console.log(pics);
+        }
+    }
+})
+
+
+
+    // create function that creates buttons using elements with the array
 
 // add click event for submit button
 
