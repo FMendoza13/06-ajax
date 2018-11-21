@@ -16,10 +16,20 @@ $(document).ready(function(){
         }
     }
 })
-
-
+getButtons();
 
     // create function that creates buttons using elements with the array
+function getButtons(){
+
+    $("#movieButton").empty();
+    $("#movie-input").val("");
+
+    for (i in pics){
+        button = '<button type="button" class="movieButtons col-md-1 col-sm-2 col-xs-3 btn btn-primary" value= "${pics[i]}" >${pics[i]}</button>';
+        $("#movieButtons").append(button);
+    }
+    // append.(button)
+}
 
 // add click event for submit button
 
