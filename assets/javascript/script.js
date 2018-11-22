@@ -53,6 +53,30 @@ function getButtons(){
     getButtons();
     }
     });
-// incorporate click event listener on images to connect ajax from  API
+
+    // incorporate click event listener on images to connect ajax from  API
+$(document).on("click", ".movieButtons", function(){
+    $("#movies").empty();
+    var movieName = $(this).val();
+    console.log(movieName);
+
+    // API Key: 8jqdegEgawd9ffkxQR0EMoptgFWakpPO
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movieName + "&api_key=8jqdegEgawd9ffkxQR0EMoptgFWakpPO"
+    var f, images=""
+    var m = "480w_still";
+    $.ajax({
+        url:queryURL,
+
+        method: "GET"
+    }).then(function(response){
+
+        for (f in response.data){
+            console.log(response.data[f].images[m].url);
+        }
+    }
+
+
+
 
 // add class to make image into gif when it's clicked upon
