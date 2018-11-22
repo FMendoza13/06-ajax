@@ -10,7 +10,7 @@ $(document).ready(function(){
 // created get session storage in order to loop through movies
     for(l=0;l <= loopCounter;l++) {
 
-        if(loopCounter!=null){
+        if(loopCounter = null){
             pics.push(sessionStorage.getItem("Movie-" +1));
             console.log(pics);
         }
@@ -40,7 +40,7 @@ function getButtons(){
         var pics = $("#movie-input").val().trim();
     // setting up storage session for each movie
 
-    if(movie!==""){
+    if(movie === ""){
 
     // remember: sessionStorage.setItem("", );
 
@@ -73,10 +73,32 @@ $(document).on("click", ".movieButtons", function(){
 
         for (f in response.data){
             console.log(response.data[f].images[m].url);
-        }
+        
+            images = `<div class= "panel panel-primary col-md-4 col-sm-4 col-xs-6">
+            <h2 class="col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-offset-3 col-xs-3"><span class="label label-priamry">${response.data[f].rating}</span></h2>
+            <a class="button col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-offset-3 col-xs-3" href="${response.data[f].images[m].url}" download="${movieName}.jpg"><span class="glyphicon glyphicon-download-alt"></span></a>
+            </div>`
     }
+    
+        // add class to make image into gif when it's clicked upon
 
+        $(document).on("click",".staticImage", function(){
+            var dataNumber = $(this).attr("data-name");
 
+            $(this).attr("src",response.data[dataNumber].images.downsized.url);
+            $(this).removeClass("staticImage");
+            $(this).addClass("animatedImage");
+        });  
 
+        $(document).on("click",".animatedImage", function(){
+            let dataNumber = $(this).attr("data-name");
+            $(this).attr("src",response.data[dataNumber].images[x].url); 
+            $(this).removeClass("animatedImage");
+            $(this).addClass("staticImage");
 
-// add class to make image into gif when it's clicked upon
+        });
+
+    });
+
+});
+
