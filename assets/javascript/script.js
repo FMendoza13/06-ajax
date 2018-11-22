@@ -4,11 +4,11 @@ $(document).ready(function(){
 // I hope to create arrays and variable
 
     var i, l, button = "", toDoCount=0;
-    var pics=["Die Hard", "Star Wars", "Casablanca", "The Third Man", "Moonlight", "Unforgiven", "Mad Max Fury Road", "The Revenant", "Goodfellas", "IT"];
+    var pics = ["Die Hard", "Star Wars", "Casablanca", "The Third Man", "Moonlight", "Unforgiven", "Mad Max Fury Road", "The Revenant", "Goodfellas", "IT"];
     var loopCounter = sessionStorage.getItem("count");
     console.log(loopCounter)
 // created get session storage in order to loop through movies
-    for(l=0; l <= loopCounter; l++) {
+    for(l=0;l <= loopCounter;l++) {
 
         if(loopCounter!=null){
             pics.push(sessionStorage.getItem("Movie-" +1));
@@ -16,7 +16,8 @@ $(document).ready(function(){
         }
     }
 })
-getButtons();
+
+// getButtons();
 
     // create function that creates buttons using elements with the array
 function getButtons(){
@@ -24,7 +25,7 @@ function getButtons(){
     $("#movieButton").empty();
     $("#movie-input").val("");
 
-    for (i in pics){
+    for(i in pics){
         button = '<button type="button" class="movieButtons col-md-1 col-sm-2 col-xs-3 btn btn-primary" value= "${pics[i]}" >${pics[i]}</button>';
         $("#movieButtons").append(button);
     }
@@ -33,8 +34,25 @@ function getButtons(){
 
 // add click event for submit button
 
-// setting up storage session for each movie
+    $("#addMovie").on("click", function(event) {
+        
+        event.preventDefault();
+        var pics = $("#movie-input").val().trim();
+    // setting up storage session for each movie
 
+    if(movie!==""){
+
+    // remember: sessionStorage.setItem("", );
+
+    sessionStorage.setItem("movies-" + toDoCount, pics)
+        // tracker
+    sessionStorage.setItem("count", toDoCount)
+    toDoCount++;
+        // console.log(pics)
+    pics.push(movie);
+    getButtons();
+    }
+    });
 // incorporate click event listener on images to connect ajax from  API
 
 // add class to make image into gif when it's clicked upon
